@@ -14,7 +14,7 @@
     "@types/node": "^11.9.0",
     "@types/jest": "^24.0.13",
     "@types/node": "^10.12.19",
-    "coveralls": "^3.0.3",
+    "coveralls": "^3.0.4",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.1.0",
