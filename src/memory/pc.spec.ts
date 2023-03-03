@@ -12,7 +12,6 @@ describe("ProgramCounter", () => {
     // Load 0's, validate that they are kept.
     expect(pc(BIT16_FALSE, 0, 1, 0)).toEqual(BIT16_FALSE);
     expect(pc(BIT16_TRUE, 0, 0, 0)).toEqual(BIT16_FALSE);
-
   });
 
   it("should be able to increment", () => {
@@ -33,5 +32,14 @@ describe("ProgramCounter", () => {
 
     // Now, reset it, expecting 0's.
     expect(pc(someValue, 0, 0, 1)).toEqual(BIT16_FALSE);
+  });
+
+  it("should be able to noop if none of the bits have been set", () => {
+    const pc = ProgramCounter();
+
+    expect(pc(BIT16_FALSE, 0, 0, 0)).toEqual(BIT16_FALSE);
+    expect(pc(BIT16_FALSE, 0, 0, 0)).toEqual(BIT16_FALSE);
+    expect(pc(BIT16_FALSE, 0, 0, 0)).toEqual(BIT16_FALSE);
+    expect(pc(BIT16_FALSE, 0, 0, 0)).toEqual(BIT16_FALSE);
   });
 });
