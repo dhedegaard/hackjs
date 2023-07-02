@@ -1,13 +1,15 @@
 {
-  "name": "hackjs",
-  "version": "1.0.0",
+  "name": "@dhedegaard/hackjs",
+  "version": "0.1.0",
   "description": "An implementation of the Hack computer, based on nand2tetris",
-  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --watch",
     "lint": "eslint src/",
     "watch": "tsup --watch",
-    "build": "tsup"
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
   },
   "jest": {
     "roots": [
