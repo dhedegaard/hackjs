@@ -6,13 +6,8 @@
   "scripts": {
     "test": "jest --watch",
     "lint": "eslint src/",
-    "start": "tsc"
-  },
-  "dependencies": {
-    "@types/jest": "^29.5.2",
-    "@types/node": "^18.16.19",
-    "jest": "^29.5.0",
-    "ts-jest": "^29.1.1"
+    "watch": "tsup --watch",
+    "build": "tsup"
   },
   "jest": {
     "roots": [
@@ -34,9 +29,14 @@
   "devDependencies": {
     "@tsconfig/node18": "^18.2.0",
     "@tsconfig/strictest": "^2.0.1",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^18.16.19",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.44.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.1",
+    "tsup": "^7.1.0",
     "typescript": "^5.1.6"
   }
 }
