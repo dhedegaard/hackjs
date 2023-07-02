@@ -25,27 +25,64 @@ export type Bit6 = [Bit, Bit, Bit, Bit, Bit, Bit];
 /**
  * A 8 bit type, as a tuple.
  */
-export type Bit8 = [
-  Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit];
+export type Bit8 = [Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit];
 
 export type Bit9 = [Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit];
 
 export type Bit12 = [
-  Bit, Bit, Bit, Bit,
-  Bit, Bit, Bit, Bit,
-  Bit, Bit, Bit, Bit];
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit
+];
 
 export type Bit15 = [
-  Bit, Bit, Bit, Bit, Bit,
-  Bit, Bit, Bit, Bit, Bit,
-  Bit, Bit, Bit, Bit, Bit];
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit
+];
 
 /**
  * A 16 bit type, as a tuple.
  */
 export type Bit16 = [
-  Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit,
-  Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit];
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit,
+  Bit
+];
 
 /**
  * The composite output from the ALU.
@@ -64,7 +101,6 @@ export interface IALUOutput {
    */
   ng: Bit;
 }
-
 
 export interface SRFlipFlopOutput {
   /**
