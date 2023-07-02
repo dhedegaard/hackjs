@@ -39,7 +39,7 @@ export const Register = () => {
 
   return (input: Bit16, load: Bit): Bit16 =>
     // Call all the registers with each input and the load bit.
-    output.map((reg, idx) => reg(input[idx]!, load)) as Bit16;
+    output.map((reg, idx) => reg(definedOrFail(input[idx]), load)) as Bit16;
 };
 
 /**
@@ -55,18 +55,18 @@ export const Ram8 = () => {
     const loadbits = DMux8Way(load, address);
     // Call all the registers with the demuxified load bit.
     const output = memory.map((register, idx) =>
-      register(input, loadbits[idx]!)
+      register(input, definedOrFail(loadbits[idx]))
     );
     // Multiplex the output to make sure the correct address is returned.
     return Mux8Way16(
-      output[0]!,
-      output[1]!,
-      output[2]!,
-      output[3]!,
-      output[4]!,
-      output[5]!,
-      output[6]!,
-      output[7]!,
+      definedOrFail(output[0]),
+      definedOrFail(output[1]),
+      definedOrFail(output[2]),
+      definedOrFail(output[3]),
+      definedOrFail(output[4]),
+      definedOrFail(output[5]),
+      definedOrFail(output[6]),
+      definedOrFail(output[7]),
       address
     );
   };
@@ -85,18 +85,18 @@ export const Ram64 = () => {
     const loadbits = DMux8Way(load, address.slice(0, 3) as Bit3);
     // Call all the registers with the demuxified load bit.
     const output = memory.map((register, idx) =>
-      register(input, address.slice(3) as Bit3, loadbits[idx]!)
+      register(input, address.slice(3) as Bit3, definedOrFail(loadbits[idx]))
     );
     // Multiplex the output to make sure the correct address is returned.
     return Mux8Way16(
-      output[0]!,
-      output[1]!,
-      output[2]!,
-      output[3]!,
-      output[4]!,
-      output[5]!,
-      output[6]!,
-      output[7]!,
+      definedOrFail(output[0]),
+      definedOrFail(output[1]),
+      definedOrFail(output[2]),
+      definedOrFail(output[3]),
+      definedOrFail(output[4]),
+      definedOrFail(output[5]),
+      definedOrFail(output[6]),
+      definedOrFail(output[7]),
       address.slice(0, 3) as Bit3
     );
   };
@@ -115,18 +115,18 @@ export const Ram512 = () => {
     const loadbits = DMux8Way(load, address.slice(0, 3) as Bit3);
     // Call all the registers with the demuxified load bit.
     const output = memory.map((register, idx) =>
-      register(input, address.slice(3) as Bit6, loadbits[idx]!)
+      register(input, address.slice(3) as Bit6, definedOrFail(loadbits[idx]))
     );
     // Multiplex the output to make sure the correct address is returned.
     return Mux8Way16(
-      output[0]!,
-      output[1]!,
-      output[2]!,
-      output[3]!,
-      output[4]!,
-      output[5]!,
-      output[6]!,
-      output[7]!,
+      definedOrFail(output[0]),
+      definedOrFail(output[1]),
+      definedOrFail(output[2]),
+      definedOrFail(output[3]),
+      definedOrFail(output[4]),
+      definedOrFail(output[5]),
+      definedOrFail(output[6]),
+      definedOrFail(output[7]),
       address.slice(0, 3) as Bit3
     );
   };
@@ -145,18 +145,18 @@ export const Ram4K = () => {
     const loadbits = DMux8Way(load, address.slice(0, 3) as Bit3);
     // Call all the registers with the demuxified load bit.
     const output = memory.map((register, idx) =>
-      register(input, address.slice(3) as Bit9, loadbits[idx]!)
+      register(input, address.slice(3) as Bit9, definedOrFail(loadbits[idx]))
     );
     // Multiplex the output to make sure the correct address is returned.
     return Mux8Way16(
-      output[0]!,
-      output[1]!,
-      output[2]!,
-      output[3]!,
-      output[4]!,
-      output[5]!,
-      output[6]!,
-      output[7]!,
+      definedOrFail(output[0]),
+      definedOrFail(output[1]),
+      definedOrFail(output[2]),
+      definedOrFail(output[3]),
+      definedOrFail(output[4]),
+      definedOrFail(output[5]),
+      definedOrFail(output[6]),
+      definedOrFail(output[7]),
       address.slice(0, 3) as Bit3
     );
   };
@@ -175,19 +175,26 @@ export const Ram16K = () => {
     const loadbits = DMux8Way(load, address.slice(0, 3) as Bit3);
     // Call all the registers with the demuxified load bit.
     const output = memory.map((register, idx) =>
-      register(input, address.slice(3) as Bit12, loadbits[idx]!)
+      register(input, address.slice(3) as Bit12, definedOrFail(loadbits[idx]))
     );
     // Multiplex the output to make sure the correct address is returned.
     return Mux8Way16(
-      output[0]!,
-      output[1]!,
-      output[2]!,
-      output[3]!,
-      output[4]!,
-      output[5]!,
-      output[6]!,
-      output[7]!,
+      definedOrFail(output[0]),
+      definedOrFail(output[1]),
+      definedOrFail(output[2]),
+      definedOrFail(output[3]),
+      definedOrFail(output[4]),
+      definedOrFail(output[5]),
+      definedOrFail(output[6]),
+      definedOrFail(output[7]),
       address.slice(0, 3) as Bit3
     );
   };
+};
+
+const definedOrFail = <T>(value: T | undefined): T => {
+  if (value === undefined) {
+    throw new Error("Value is undefined");
+  }
+  return value;
 };
