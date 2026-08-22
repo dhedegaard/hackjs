@@ -1,6 +1,17 @@
 import { And, Nor, Not } from "../gates";
 import type { Bit, SRFlipFlopOutput } from "../hackjs";
 
+const SRFlipFlopTick = (s: Bit, r: Bit, output: SRFlipFlopOutput): SRFlipFlopOutput => ({
+  nq: Nor(
+    s,
+    output.q,
+  ),
+  q: Nor(
+    r,
+    output.nq,
+  ),
+});
+
 /**
  * An SR latch/flip-flop circuit.
  *
@@ -15,30 +26,6 @@ import type { Bit, SRFlipFlopOutput } from "../hackjs";
  */
 export const SRFlipFlop = (s: Bit, r: Bit, output: SRFlipFlopOutput): SRFlipFlopOutput =>
   SRFlipFlopTick(s, r, SRFlipFlopTick(s, r, output));
-
-const SRFlipFlopTick = (s: Bit, r: Bit, output: SRFlipFlopOutput): SRFlipFlopOutput => ({
-  nq: Nor(
-    s,
-    output.q,
-  ),
-  q: Nor(
-    r,
-    output.nq,
-  ),
-});
-
-/**
- * A gated data flip-flip.
- *
- * Outputs whatever is container (the output in the input), if the clock is high.
- * Otherwise sets a new state.
- *
- * @param d The data input
- * @param clock The clock, either high or low.
- * @param output The output, as both q and !q (nq).
- */
-export const GatedDFlipFlop = (d: Bit, clock: Bit, output: SRFlipFlopOutput): SRFlipFlopOutput =>
-  GatedDFlipFlopTick(d, clock, GatedDFlipFlopTick(d, clock, output));
 
 export const GatedDFlipFlopTick = (d: Bit, clock: Bit, output: SRFlipFlopOutput): SRFlipFlopOutput => ({
   nq: Nor(
@@ -56,3 +43,16 @@ export const GatedDFlipFlopTick = (d: Bit, clock: Bit, output: SRFlipFlopOutput)
     output.nq,
   ),
 });
+
+/**
+ * A gated data flip-flip.
+ *
+ * Outputs whatever is container (the output in the input), if the clock is high.
+ * Otherwise sets a new state.
+ *
+ * @param d The data input
+ * @param clock The clock, either high or low.
+ * @param output The output, as both q and !q (nq).
+ */
+export const GatedDFlipFlop = (d: Bit, clock: Bit, output: SRFlipFlopOutput): SRFlipFlopOutput =>
+  GatedDFlipFlopTick(d, clock, GatedDFlipFlopTick(d, clock, output));
