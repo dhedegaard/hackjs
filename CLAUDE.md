@@ -16,6 +16,8 @@ The project runs on [Bun](https://bun.sh) — there is no Node/Jest tooling and 
 - `bun run lint` — [oxlint](https://oxc.rs) with type-aware rules (`oxlint-tsgolint`) over `src/`, configured in `.oxlintrc.json` (`correctness`/`suspicious`/`pedantic`/`perf`/`restriction` categories as errors — `style` is deliberately not enabled). The config is categories-only by design: no per-rule entries, no overrides. Keep it that way — when a rule fires, restructure the code rather than disabling or configuring the rule.
   - `oxlint-tsgolint`'s version tracks TypeScript's (`7.0.2001` = TS 7.0.2 + patch) — when bumping `typescript`, bump it to the matching version so compiler and linter share semantics.
   - A clean run prints nothing when output is piped — check the exit code rather than assuming it didn't scan.
+  - `oxlint --rules` prints nothing here — probe what a rule/category does empirically instead: lint a scratch file with `-D <category>`, or preview config changes with `oxlint -c <candidate-config> --type-aware src/` before touching `.oxlintrc.json`.
+  - Enabled-rule pairs make some code shapes unwritable — restructure instead: any `undefined` comparison (`no-undefined` bans `=== undefined`, `unicorn/no-typeof-undefined` bans the `typeof` form) — design values to never be `undefined`, e.g. index tuples at literal positions; spreading a string (`typescript/no-misused-spread`) — use `Array.from(str)`.
 
 CI (`.github/workflows/ci.yml`) runs `bun run typecheck`, `bun run lint`, then `bun test`.
 
