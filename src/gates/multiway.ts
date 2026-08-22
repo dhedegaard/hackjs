@@ -81,14 +81,10 @@ export const DMux4Way = (
 ): Bit4 => {
   const subOutput = DMux(a, sel[0]);
   return [
-    ...[
-      And(Not(sel[1]), subOutput[0]),
-      And(Not(sel[1]), subOutput[1]),
-    ],
-    ...[
-      And(sel[1], subOutput[0]),
-      And(sel[1], subOutput[1]),
-    ],
+    And(Not(sel[1]), subOutput[0]),
+    And(Not(sel[1]), subOutput[1]),
+    And(sel[1], subOutput[0]),
+    And(sel[1], subOutput[1]),
   ] as Bit4;
 };
 
@@ -98,17 +94,13 @@ export const DMux4Way = (
 export const DMux8Way = (input: Bit, sel: Bit3): Bit8 => {
   const subOut = DMux4Way(input, sel.slice(0, 2) as Bit2);
   return [
-    ...[
-      And(Not(sel[2]), subOut[0]),
-      And(Not(sel[2]), subOut[1]),
-      And(Not(sel[2]), subOut[2]),
-      And(Not(sel[2]), subOut[3]),
-    ],
-    ...[
-      And(sel[2], subOut[0]),
-      And(sel[2], subOut[1]),
-      And(sel[2], subOut[2]),
-      And(sel[2], subOut[3]),
-    ],
-] as Bit8;
+    And(Not(sel[2]), subOut[0]),
+    And(Not(sel[2]), subOut[1]),
+    And(Not(sel[2]), subOut[2]),
+    And(Not(sel[2]), subOut[3]),
+    And(sel[2], subOut[0]),
+    And(sel[2], subOut[1]),
+    And(sel[2], subOut[2]),
+    And(sel[2], subOut[3]),
+  ] as Bit8;
 };

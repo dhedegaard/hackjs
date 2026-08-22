@@ -35,7 +35,7 @@ export const BitRegister = () => {
  */
 export const Register = () => {
   // Assemble 16 registers.
-  const output = [...Array(16)].map(() => BitRegister());
+  const output = Array.from({ length: 16 }, () => BitRegister());
 
   return (input: Bit16, load: Bit): Bit16 =>
     // Call all the registers with each input and the load bit.
@@ -48,7 +48,7 @@ export const Register = () => {
  * Call this function to initialize a new RAM unit.
  */
 export const Ram8 = () => {
-  const memory = [...Array(8)].map(() => Register());
+  const memory = Array.from({ length: 8 }, () => Register());
 
   return (input: Bit16, address: Bit3, load: Bit): Bit16 => {
     // Start by demuxifying the load bits for each register.
@@ -78,7 +78,7 @@ export const Ram8 = () => {
  * Call this function to initialize a new RAM unit.
  */
 export const Ram64 = () => {
-  const memory = [...Array(8)].map(() => Ram8());
+  const memory = Array.from({ length: 8 }, () => Ram8());
 
   return (input: Bit16, address: Bit6, load: Bit): Bit16 => {
     // Start by demuxifying the load bits for each register.
@@ -108,7 +108,7 @@ export const Ram64 = () => {
  * Call this function to initialize a new RAM unit.
  */
 export const Ram512 = () => {
-  const memory = [...Array(8)].map(() => Ram64());
+  const memory = Array.from({ length: 8 }, () => Ram64());
 
   return (input: Bit16, address: Bit9, load: Bit): Bit16 => {
     // Start by demuxifying the load bits for each register.
@@ -138,7 +138,7 @@ export const Ram512 = () => {
  * Call this function to initialize a new RAM unit.
  */
 export const Ram4K = () => {
-  const memory = [...Array(8)].map(() => Ram512());
+  const memory = Array.from({ length: 8 }, () => Ram512());
 
   return (input: Bit16, address: Bit12, load: Bit): Bit16 => {
     // Start by demuxifying the load bits for each register.
@@ -168,7 +168,7 @@ export const Ram4K = () => {
  * Call this function to initialize a new RAM unit.
  */
 export const Ram16K = () => {
-  const memory = [...Array(8)].map(() => Ram4K());
+  const memory = Array.from({ length: 8 }, () => Ram4K());
 
   return (input: Bit16, address: Bit15, load: Bit): Bit16 => {
     // Start by demuxifying the load bits for each register.

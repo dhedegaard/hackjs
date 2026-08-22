@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "options": {
+    "typeAware": true
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "pedantic": "error"
+  },
+  "rules": {
+    // Tuple narrowing (`x.slice(0, 8) as Bit8`) is the codebase's core idiom;
+    // tsc (strictest) still validates assertion compatibility.
+    "typescript/no-unsafe-type-assertion": "off",
+    // Would force readonly variants of every Bit tuple type through the whole
+    // chip API; not part of any typescript-eslint preset either.
+    "typescript/prefer-readonly-parameter-types": "off",
+    "no-inline-comments": "off",
+    "no-underscore-dangle": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.ts"],
+      "rules": {
+        // Exhaustive truth-table tests are long by design.
+        "max-lines-per-function": "off"
+      }
+    },
+    {
+      "files": ["**/*.d.ts"],
+      "rules": {
+        // `export {}` is required for `declare global` to work.
+        "unicorn/require-module-specifiers": "off"
+      }
+    }
+  ]
+}

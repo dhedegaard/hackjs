@@ -11,7 +11,7 @@ export const binaryToArray = (binary: string, length: number): Bit[] => {
   }
   return Array.from(binary)
     .map((e) => parseInt(e, 2) as Bit)
-    .reverse();
+    .toReversed();
 };
 
 export const binaryToBit8 = (binary: string): Bit8 => binaryToArray(binary, 8) as Bit8;

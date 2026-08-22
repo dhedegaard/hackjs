@@ -13,9 +13,9 @@ The project runs on [Bun](https://bun.sh) — there is no Node/Jest tooling and 
 - `bun test` — run the test suite (`bun test --watch` for watch mode).
 - `bun test src/gates/elementary.spec.ts` — run a single test file.
 - `bun run typecheck` — `tsc --noEmit`. Bun does not type-check when running tests, so run this alongside them.
-- `bun run lint` — ESLint over `src/` (legacy ESLint 8 / `.eslintrc.cjs` setup; modernizing or dropping it is a deliberate later step).
+- `bun run lint` — [oxlint](https://oxc.rs) with type-aware rules (`oxlint-tsgolint`) over `src/`, configured in `.oxlintrc.json` (`correctness`/`suspicious`/`pedantic` categories as errors; rules that fight the codebase's tuple-assertion idiom are disabled there with rationale).
 
-CI (`.github/workflows/ci.yml`) runs `bun run typecheck` then `bun test`.
+CI (`.github/workflows/ci.yml`) runs `bun run typecheck`, `bun run lint`, then `bun test`.
 
 ## Architecture
 
