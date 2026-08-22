@@ -5,8 +5,8 @@ import { DMux4Way, DMux8Way, Mux4Way16, Mux8Way16, Or8Way } from "./multiway";
 
 describe("Multiway gates", () => {
 
-  const ZEROED_8BIT = [0, 0, 0, 0, 0, 0, 0, 0] as Bit8;
-  const ONED_8BIT = [1, 1, 1, 1, 1, 1, 1, 1] as Bit8;
+  const ZEROED_8BIT = [0, 0, 0, 0, 0, 0, 0, 0] as const satisfies Bit8;
+  const ONED_8BIT = [1, 1, 1, 1, 1, 1, 1, 1] as const satisfies Bit8;
 
   describe("Or8Way gate", () => {
     it("should validate", () => {

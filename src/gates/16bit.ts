@@ -1,14 +1,30 @@
 import type { Bit, Bit16 } from "../hackjs";
 import { And, Mux, Not, Or } from "./elementary";
 
-export const ZEROED_16BIT = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] as Bit16;
-export const ONED_16BIT = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] as Bit16;
+export const ZEROED_16BIT = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] as const satisfies Bit16;
+export const ONED_16BIT = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] as const satisfies Bit16;
 
 /**
  * A 16-bit NOT gate, that applies the boolean NOT operation to each bit.
  */
-export const Not16 = (a: Bit16): Bit16 => (a.map((b) =>
-  Not(b))) as Bit16;
+export const Not16 = (a: Bit16): Bit16 => ([
+  Not(a[0]),
+  Not(a[1]),
+  Not(a[2]),
+  Not(a[3]),
+  Not(a[4]),
+  Not(a[5]),
+  Not(a[6]),
+  Not(a[7]),
+  Not(a[8]),
+  Not(a[9]),
+  Not(a[10]),
+  Not(a[11]),
+  Not(a[12]),
+  Not(a[13]),
+  Not(a[14]),
+  Not(a[15]),
+]);
 
 /**
  * A 16-bit AND gate, that applies the boolean AND operation to each bit pair.
