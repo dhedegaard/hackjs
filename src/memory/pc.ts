@@ -23,15 +23,18 @@ export const ProgramCounter = () => {
       Mux16(
         Mux16(
           BIT16_FALSE,
-          Inc16( // increment
+          // Increment
+          Inc16(
             reg(BIT16_FALSE, 0),
           ),
           inc,
         ),
-        input, // Load
+        // Load
+        input,
         load,
       ),
-      BIT16_FALSE,  // Reset
+      // Reset
+      BIT16_FALSE,
       reset,
     );
     // Call the register, returning the next result.
