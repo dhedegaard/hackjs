@@ -1,7 +1,7 @@
+import { DMux4Way, DMux8Way, Mux4Way16, Mux8Way16, Or8Way } from "./multiway";
+import { ONED_16BIT, ZEROED_16BIT } from "./16bit";
 import { describe, expect, it } from "bun:test";
 import type { Bit8 } from "../hackjs";
-import { ONED_16BIT, ZEROED_16BIT } from "./16bit";
-import { DMux4Way, DMux8Way, Mux4Way16, Mux8Way16, Or8Way } from "./multiway";
 
 const ZEROED_8BIT = [0, 0, 0, 0, 0, 0, 0, 0] as const satisfies Bit8;
 const ONED_8BIT = [1, 1, 1, 1, 1, 1, 1, 1] as const satisfies Bit8;

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { BIT16_FALSE, BIT16_TRUE, binaryToBit16 } from "../helpers";
+import { describe, expect, it } from "bun:test";
 import { ProgramCounter } from "./pc";
 
 describe("ProgramCounter", () => {

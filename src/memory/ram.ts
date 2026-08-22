@@ -1,7 +1,7 @@
-import { DMux8Way, Mux, Mux8Way16 } from "../gates";
 import type { Bit, Bit12, Bit15, Bit16, Bit3, Bit6, Bit9 } from "../hackjs";
-import { bitToSRFlipFlopOutput } from "../helpers";
+import { DMux8Way, Mux, Mux8Way16 } from "../gates";
 import { GatedDFlipFlop } from "./flipflop";
+import { bitToSRFlipFlopOutput } from "../helpers";
 
 /**
  * A single bit register.

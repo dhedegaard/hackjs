@@ -1,5 +1,3 @@
-import { describe, expect, it } from "bun:test";
-import { binaryToBit16, binaryToBit8 } from "../helpers";
 import {
   Adder16,
   Adder8,
@@ -8,6 +6,8 @@ import {
   type IAdderResult,
   Inc16,
 } from "./adder";
+import { binaryToBit16, binaryToBit8 } from "../helpers";
+import { describe, expect, it } from "bun:test";
 
 describe("HalfAdder", () => {
   it("validates the truth table", () => {

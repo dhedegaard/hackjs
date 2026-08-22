@@ -1,6 +1,6 @@
-import { describe, expect, it } from "bun:test";
 import { BIT16_FALSE, BIT16_TRUE, binaryToBit16 } from "../helpers";
 import { BitRegister, Ram16K, Ram4K, Ram512, Ram64, Ram8, Register } from "./ram";
+import { describe, expect, it } from "bun:test";
 
 describe("BitRegister", () => {
   it("can load some data, keep it, and return it later", () => {

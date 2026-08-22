@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import { binaryToArray, binaryToBit16, binaryToBit8, bitToBit16, bitToSRFlipFlopOutput } from "./helpers";
+import { describe, expect, it } from "bun:test";
 
 describe("Helper functions", () => {
 

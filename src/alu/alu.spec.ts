@@ -1,7 +1,7 @@
-import { describe, expect, it } from "bun:test";
-import { Not16, ONED_16BIT, ZEROED_16BIT } from "../gates";
-import { BIT16_FALSE, BIT16_TRUE, binaryToBit16 } from "../helpers";
 import { ALU, Operator, Preset } from "./alu";
+import { BIT16_FALSE, BIT16_TRUE, binaryToBit16 } from "../helpers";
+import { Not16, ONED_16BIT, ZEROED_16BIT } from "../gates";
+import { describe, expect, it } from "bun:test";
 
 describe("Preset", () => {
   const c = binaryToBit16;

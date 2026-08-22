@@ -1,5 +1,5 @@
-import { Not } from "./gates";
 import type { Bit, Bit16, Bit8, SRFlipFlopOutput } from "./hackjs";
+import { Not } from "./gates";
 
 const charToBit = (char: string): Bit => {
   if (char !== "0" && char !== "1") {

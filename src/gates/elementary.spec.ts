@@ -1,5 +1,5 @@
-import { describe, expect, it } from "bun:test";
 import * as gates from ".";
+import { describe, expect, it } from "bun:test";
 
 describe("Nand gate", () => {
   it("should validate truth table", () => {

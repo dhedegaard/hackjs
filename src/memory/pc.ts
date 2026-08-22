@@ -1,7 +1,7 @@
-import { Inc16 } from "../alu";
-import { Mux16, Or } from "../gates";
 import type { Bit, Bit16 } from "../hackjs";
+import { Mux16, Or } from "../gates";
 import { BIT16_FALSE } from "../helpers";
+import { Inc16 } from "../alu";
 import { Register } from "./ram";
 
 /**
