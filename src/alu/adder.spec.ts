@@ -12,23 +12,23 @@ import {
 describe("Adder gates", () => {
   describe("HalfAdder", () => {
     it("validates the truth table", () => {
-      expect(HalfAdder(0, 0)).toEqual({ carry: 0, sum: 0 } as IAdderResult);
-      expect(HalfAdder(0, 1)).toEqual({ carry: 0, sum: 1 } as IAdderResult);
-      expect(HalfAdder(1, 0)).toEqual({ carry: 0, sum: 1 } as IAdderResult);
-      expect(HalfAdder(1, 1)).toEqual({ carry: 1, sum: 0 } as IAdderResult);
+      expect(HalfAdder(0, 0)).toEqual({ carry: 0, sum: 0 } satisfies IAdderResult);
+      expect(HalfAdder(0, 1)).toEqual({ carry: 0, sum: 1 } satisfies IAdderResult);
+      expect(HalfAdder(1, 0)).toEqual({ carry: 0, sum: 1 } satisfies IAdderResult);
+      expect(HalfAdder(1, 1)).toEqual({ carry: 1, sum: 0 } satisfies IAdderResult);
     });
   });
 
   describe("FullAdder", () => {
     it("validates the truth table", () => {
-      expect(FullAdder(0, 0, 0)).toEqual({ carry: 0, sum: 0 } as IAdderResult);
-      expect(FullAdder(0, 0, 1)).toEqual({ carry: 0, sum: 1 } as IAdderResult);
-      expect(FullAdder(0, 1, 0)).toEqual({ carry: 0, sum: 1 } as IAdderResult);
-      expect(FullAdder(0, 1, 1)).toEqual({ carry: 1, sum: 0 } as IAdderResult);
-      expect(FullAdder(1, 0, 0)).toEqual({ carry: 0, sum: 1 } as IAdderResult);
-      expect(FullAdder(1, 0, 1)).toEqual({ carry: 1, sum: 0 } as IAdderResult);
-      expect(FullAdder(1, 1, 0)).toEqual({ carry: 1, sum: 0 } as IAdderResult);
-      expect(FullAdder(1, 1, 1)).toEqual({ carry: 1, sum: 1 } as IAdderResult);
+      expect(FullAdder(0, 0, 0)).toEqual({ carry: 0, sum: 0 } satisfies IAdderResult);
+      expect(FullAdder(0, 0, 1)).toEqual({ carry: 0, sum: 1 } satisfies IAdderResult);
+      expect(FullAdder(0, 1, 0)).toEqual({ carry: 0, sum: 1 } satisfies IAdderResult);
+      expect(FullAdder(0, 1, 1)).toEqual({ carry: 1, sum: 0 } satisfies IAdderResult);
+      expect(FullAdder(1, 0, 0)).toEqual({ carry: 0, sum: 1 } satisfies IAdderResult);
+      expect(FullAdder(1, 0, 1)).toEqual({ carry: 1, sum: 0 } satisfies IAdderResult);
+      expect(FullAdder(1, 1, 0)).toEqual({ carry: 1, sum: 0 } satisfies IAdderResult);
+      expect(FullAdder(1, 1, 1)).toEqual({ carry: 1, sum: 1 } satisfies IAdderResult);
     });
   });
 
