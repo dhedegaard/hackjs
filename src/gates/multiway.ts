@@ -85,14 +85,14 @@ export const DMux4Way = (
     And(Not(sel[1]), subOutput[1]),
     And(sel[1], subOutput[0]),
     And(sel[1], subOutput[1]),
-  ] as Bit4;
+  ];
 };
 
 /**
  * A 8-way demultiplexor.
  */
 export const DMux8Way = (input: Bit, sel: Bit3): Bit8 => {
-  const subOut = DMux4Way(input, sel.slice(0, 2) as Bit2);
+  const subOut = DMux4Way(input, [sel[0], sel[1]]);
   return [
     And(Not(sel[2]), subOut[0]),
     And(Not(sel[2]), subOut[1]),
@@ -102,5 +102,5 @@ export const DMux8Way = (input: Bit, sel: Bit3): Bit8 => {
     And(sel[2], subOut[1]),
     And(sel[2], subOut[2]),
     And(sel[2], subOut[3]),
-  ] as Bit8;
+  ];
 };
