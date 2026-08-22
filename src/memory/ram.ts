@@ -5,7 +5,7 @@ import { GatedDFlipFlop } from "./flipflop";
 
 const definedOrFail = <T>(value: T | undefined): T => {
   if (value === undefined) {
-    throw new Error("Value is undefined");
+    throw new TypeError("Value is undefined");
   }
   return value;
 };
