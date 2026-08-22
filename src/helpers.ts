@@ -10,7 +10,7 @@ export const binaryToArray = (binary: string, length: number): Bit[] => {
     throw new TypeError(`binary length (${binary.length}) is not equal to the expected bit length (${length})`);
   }
   return Array.from(binary)
-    .map((e) => parseInt(e, 2) as Bit)
+    .map((e) => Number.parseInt(e, 2) as Bit)
     .toReversed();
 };
 
