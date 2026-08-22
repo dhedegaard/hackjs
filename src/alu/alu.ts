@@ -1,5 +1,5 @@
 import { And16, Not, Not16, Or, Or16, Or8Way } from "../gates";
-import type { Bit, Bit16, Bit8, IALUOutput } from "../hackjs";
+import type { Bit, Bit16, IALUOutput } from "../hackjs";
 import { BIT16_FALSE, bitToBit16 } from "../helpers";
 import { Adder16 } from "./adder";
 
@@ -86,8 +86,8 @@ export const ALU = (
     out,
     zr: Not(
       Or(
-        Or8Way(out.slice(0, 8) as Bit8),
-        Or8Way(out.slice(8, 16) as Bit8),
+        Or8Way([out[0], out[1], out[2], out[3], out[4], out[5], out[6], out[7]]),
+        Or8Way([out[8], out[9], out[10], out[11], out[12], out[13], out[14], out[15]]),
       ),
     ),
   };
