@@ -13,7 +13,7 @@ The project runs on [Bun](https://bun.sh) — there is no Node/Jest tooling and 
 - `bun test` — run the test suite (`bun test --watch` for watch mode).
 - `bun test src/gates/elementary.spec.ts` — run a single test file.
 - `bun run typecheck` — `tsc --noEmit`. Bun does not type-check when running tests, so run this alongside them.
-- `bun run lint` — [oxlint](https://oxc.rs) with type-aware rules (`oxlint-tsgolint`) over `src/`, configured in `.oxlintrc.json` (`correctness`/`suspicious`/`pedantic` categories as errors; rules that fight the codebase's tuple-assertion idiom are disabled there with rationale).
+- `bun run lint` — [oxlint](https://oxc.rs) with type-aware rules (`oxlint-tsgolint`) over `src/`, configured in `.oxlintrc.json` (`correctness`/`suspicious`/`pedantic`/`perf`/`restriction` categories as errors — `style` is deliberately not enabled, though a couple of its rules are on individually; no rules are disabled, and keeping it that way is a goal: prefer restructuring code over adding rule overrides).
   - `oxlint-tsgolint`'s version tracks TypeScript's (`7.0.2001` = TS 7.0.2 + patch) — when bumping `typescript`, bump it to the matching version so compiler and linter share semantics.
   - A clean run prints nothing when output is piped — check the exit code rather than assuming it didn't scan.
 
@@ -31,7 +31,8 @@ Layers (each re-exported via its directory's `index.ts`, and all namespaced from
 
 Key conventions:
 
-- **Types** live in `src/hackjs.d.ts`: `Bit = 0 | 1` and fixed-length tuple types (`Bit2`…`Bit16`). Type-only imports must use `import type` — `@tsconfig/bun` enables `verbatimModuleSyntax`.
+- **Types** live in `src/hackjs.d.ts`: `Bit = 0 | 1` and fixed-length readonly tuple types (`Bit2`…`Bit16`). Tuples are built by explicit construction (indexed element literals, rest-destructuring for address splits, `as const satisfies Bit16` for constant tables) — never by `as BitN` assertions on `slice`/`map` results, which the lint setup rejects as unsafe. Type-only imports must use `import type` — `@tsconfig/bun` enables `verbatimModuleSyntax`.
+- **No `as` type assertions**: prefer `satisfies T` to check a literal against a type, and `as const` (or `as const satisfies T`) when literal/tuple inference should be kept. `as T` casts are banned — restructure the code so the type holds by construction instead.
 - **Bit ordering**: bit arrays are LSB-first — `helpers.binaryToBit16("…")` reverses the string, so index 0 of the tuple is the least significant bit. The printed array order is the reverse of the binary-string notation.
 - **State**: combinational chips are pure functions. Sequential chips (`BitRegister`, `Register`, RAM, PC) are factory functions returning a closure that holds its own state — call the factory to get a chip instance, then invoke the instance per clock cycle.
 - **Tests** are co-located `.spec.ts` files next to the module they cover; new chips get exhaustive truth-table style tests in the same pattern. Each spec imports what it uses from `"bun:test"` (`import { describe, expect, it } from "bun:test";`).
