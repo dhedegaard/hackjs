@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { binaryToBit16, BIT16_FALSE, BIT16_TRUE } from "../helpers";
+import { BIT16_FALSE, BIT16_TRUE, binaryToBit16 } from "../helpers";
 import { BitRegister, Ram16K, Ram4K, Ram512, Ram64, Ram8, Register } from "./ram";
 
 describe("ram", () => {

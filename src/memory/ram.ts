@@ -3,6 +3,13 @@ import type { Bit, Bit12, Bit15, Bit16, Bit3, Bit6, Bit9 } from "../hackjs";
 import { bitToSRFlipFlopOutput } from "../helpers";
 import { GatedDFlipFlop } from "./flipflop";
 
+const definedOrFail = <T>(value: T | undefined): T => {
+  if (value === undefined) {
+    throw new Error("Value is undefined");
+  }
+  return value;
+};
+
 /**
  * A single bit register.
  *
@@ -190,11 +197,4 @@ export const Ram16K = () => {
       address.slice(0, 3) as Bit3
     );
   };
-};
-
-const definedOrFail = <T>(value: T | undefined): T => {
-  if (value === undefined) {
-    throw new Error("Value is undefined");
-  }
-  return value;
 };
