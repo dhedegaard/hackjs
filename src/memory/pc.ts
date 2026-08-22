@@ -1,6 +1,6 @@
 import { Inc16 } from "../alu";
 import { Mux16, Or } from "../gates";
-import { Bit, Bit16 } from "../hackjs";
+import type { Bit, Bit16 } from "../hackjs";
 import { BIT16_FALSE } from "../helpers";
 import { Register } from "./ram";
 
