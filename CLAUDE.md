@@ -8,13 +8,14 @@ A TypeScript implementation of the Hack computer from [nand2tetris](https://www.
 
 ## Commands
 
-- `npm test` — runs Jest in **watch mode** (interactive). For a single run use `npx jest --ci`.
-- `npx jest src/gates/elementary.spec.ts` — run a single test file.
-- `npm run build` — compile with `tsc` to `dist/`.
-- `npm run watch` — `tsc --watch`.
-- `npm run lint` — ESLint over `src/`.
+The project runs on [Bun](https://bun.sh) — there is no Node/Jest tooling and no build step.
 
-CI (`.github/workflows/nodejs.yml`) runs `npm run build` then `npx jest --ci` on Node 18.
+- `bun test` — run the test suite (`bun test --watch` for watch mode).
+- `bun test src/gates/elementary.spec.ts` — run a single test file.
+- `bun run typecheck` — `tsc --noEmit`. Bun does not type-check when running tests, so run this alongside them.
+- `bun run lint` — ESLint over `src/`.
+
+CI (`.github/workflows/ci.yml`) runs `bun run typecheck` then `bun test`.
 
 ## Architecture
 
@@ -31,4 +32,4 @@ Key conventions:
 - **Types** live in `src/hackjs.d.ts`: `Bit = 0 | 1` and fixed-length tuple types (`Bit2`…`Bit16`).
 - **Bit ordering**: bit arrays are LSB-first — `helpers.binaryToBit16("…")` reverses the string, so index 0 of the tuple is the least significant bit. The printed array order is the reverse of the binary-string notation.
 - **State**: combinational chips are pure functions. Sequential chips (`BitRegister`, `Register`, RAM, PC) are factory functions returning a closure that holds its own state — call the factory to get a chip instance, then invoke the instance per clock cycle.
-- **Tests** are co-located `.spec.ts` files next to the module they cover; new chips get exhaustive truth-table style tests in the same pattern.
+- **Tests** are co-located `.spec.ts` files next to the module they cover; new chips get exhaustive truth-table style tests in the same pattern. They use jest-style globals (`describe`/`it`/`expect`) that Bun injects at runtime — no imports needed; `src/test-globals.d.ts` declares them for the type checker.

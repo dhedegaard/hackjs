@@ -1,6 +1,6 @@
 # Hackjs
 
-![Node.js CI](https://github.com/dhedegaard/hackjs/workflows/Node.js%20CI/badge.svg)
+![CI](https://github.com/dhedegaard/hackjs/actions/workflows/ci.yml/badge.svg)
 
 An implementation of the Hack computer, based on [nand2tetris](https://www.nand2tetris.org/).
 
@@ -8,7 +8,8 @@ An implementation of the Hack computer, based on [nand2tetris](https://www.nand2
 
 There's nothing really to run yet, there are some unit tests that prove that the various parts are working as expected.
 
-For running these:
+The project runs on [Bun](https://bun.sh):
 
-- Install dependencies: `$ npm i`
-- Run the tests: `$ npm test`
+- Install dependencies: `$ bun install`
+- Run the tests: `$ bun test`
+- Type check: `$ bun run typecheck`

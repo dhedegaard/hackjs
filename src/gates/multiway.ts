@@ -1,4 +1,4 @@
-import { Bit, Bit16, Bit2, Bit3, Bit4, Bit8 } from "../hackjs";
+import type { Bit, Bit16, Bit2, Bit3, Bit4, Bit8 } from "../hackjs";
 import { And, DMux, Mux4, Mux8, Not, Or } from "./elementary";
 
 /**

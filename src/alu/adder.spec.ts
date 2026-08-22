@@ -4,7 +4,7 @@ import {
   Adder8,
   FullAdder,
   HalfAdder,
-  IAdderResult,
+  type IAdderResult,
   Inc16,
 } from "./adder";
 

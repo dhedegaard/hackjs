@@ -2,7 +2,7 @@
  * Implements various elementary logic gates based on one or more input gates and one or more output gate.
  * Everything except the NAND gate is implemented entirely by compositing other gates.
  */
-import { Bit, Bit2, Bit3 } from "../hackjs";
+import type { Bit, Bit2, Bit3 } from "../hackjs";
 
 /**
  * A NAND (not-and) gate, the only gate not implemented as a composite of other gates.

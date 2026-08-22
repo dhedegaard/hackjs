@@ -1,5 +1,5 @@
 import { And, Nor, Not } from "../gates";
-import { Bit, SRFlipFlopOutput } from "../hackjs";
+import type { Bit, SRFlipFlopOutput } from "../hackjs";
 
 /**
  * An SR latch/flip-flop circuit.

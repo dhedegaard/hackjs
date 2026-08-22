@@ -1,5 +1,5 @@
 import { Not } from "./gates";
-import { Bit, Bit16, Bit8, SRFlipFlopOutput } from "./hackjs";
+import type { Bit, Bit16, Bit8, SRFlipFlopOutput } from "./hackjs";
 
 /**
  * Converts a binary string to a bit array.
