@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-A TypeScript implementation of the Hack computer from [nand2tetris](https://www.nand2tetris.org/). There is no runnable application yet — the library is exercised entirely through unit tests.
+A TypeScript implementation of the Hack computer from [nand2tetris](https://www.nand2tetris.org/). There is no runnable application yet — the library is exercised entirely through unit tests. It is not published to npm, which is why there is no build/`dist/` output.
 
 ## Commands
 
@@ -13,7 +13,7 @@ The project runs on [Bun](https://bun.sh) — there is no Node/Jest tooling and 
 - `bun test` — run the test suite (`bun test --watch` for watch mode).
 - `bun test src/gates/elementary.spec.ts` — run a single test file.
 - `bun run typecheck` — `tsc --noEmit`. Bun does not type-check when running tests, so run this alongside them.
-- `bun run lint` — ESLint over `src/`.
+- `bun run lint` — ESLint over `src/` (legacy ESLint 8 / `.eslintrc.cjs` setup; modernizing or dropping it is a deliberate later step).
 
 CI (`.github/workflows/ci.yml`) runs `bun run typecheck` then `bun test`.
 
@@ -29,7 +29,7 @@ Layers (each re-exported via its directory's `index.ts`, and all namespaced from
 
 Key conventions:
 
-- **Types** live in `src/hackjs.d.ts`: `Bit = 0 | 1` and fixed-length tuple types (`Bit2`…`Bit16`).
+- **Types** live in `src/hackjs.d.ts`: `Bit = 0 | 1` and fixed-length tuple types (`Bit2`…`Bit16`). Type-only imports must use `import type` — `@tsconfig/bun` enables `verbatimModuleSyntax`.
 - **Bit ordering**: bit arrays are LSB-first — `helpers.binaryToBit16("…")` reverses the string, so index 0 of the tuple is the least significant bit. The printed array order is the reverse of the binary-string notation.
 - **State**: combinational chips are pure functions. Sequential chips (`BitRegister`, `Register`, RAM, PC) are factory functions returning a closure that holds its own state — call the factory to get a chip instance, then invoke the instance per clock cycle.
 - **Tests** are co-located `.spec.ts` files next to the module they cover; new chips get exhaustive truth-table style tests in the same pattern. They use jest-style globals (`describe`/`it`/`expect`) that Bun injects at runtime — no imports needed; `src/test-globals.d.ts` declares them for the type checker.
