@@ -14,6 +14,8 @@ The project runs on [Bun](https://bun.sh) — there is no Node/Jest tooling and 
 - `bun test src/gates/elementary.spec.ts` — run a single test file.
 - `bun run typecheck` — `tsc --noEmit`. Bun does not type-check when running tests, so run this alongside them.
 - `bun run lint` — [oxlint](https://oxc.rs) with type-aware rules (`oxlint-tsgolint`) over `src/`, configured in `.oxlintrc.json` (`correctness`/`suspicious`/`pedantic` categories as errors; rules that fight the codebase's tuple-assertion idiom are disabled there with rationale).
+  - `oxlint-tsgolint`'s version tracks TypeScript's (`7.0.2001` = TS 7.0.2 + patch) — when bumping `typescript`, bump it to the matching version so compiler and linter share semantics.
+  - A clean run prints nothing when output is piped — check the exit code rather than assuming it didn't scan.
 
 CI (`.github/workflows/ci.yml`) runs `bun run typecheck`, `bun run lint`, then `bun test`.
 
