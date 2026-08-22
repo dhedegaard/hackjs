@@ -8,28 +8,28 @@ export type Bit = 0 | 1;
 /**
  * A 2 bit type, as a tuple.
  */
-export type Bit2 = [Bit, Bit];
+export type Bit2 = readonly [Bit, Bit];
 
 /**
  * A 3 bit type, as a tuple.
  */
-export type Bit3 = [Bit, Bit, Bit];
+export type Bit3 = readonly [Bit, Bit, Bit];
 
 /**
  * A 4 bit type, as a tuple.
  */
-export type Bit4 = [Bit, Bit, Bit, Bit];
+export type Bit4 = readonly [Bit, Bit, Bit, Bit];
 
-export type Bit6 = [Bit, Bit, Bit, Bit, Bit, Bit];
+export type Bit6 = readonly [Bit, Bit, Bit, Bit, Bit, Bit];
 
 /**
  * A 8 bit type, as a tuple.
  */
-export type Bit8 = [Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit];
+export type Bit8 = readonly [Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit];
 
-export type Bit9 = [Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit];
+export type Bit9 = readonly [Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit, Bit];
 
-export type Bit12 = [
+export type Bit12 = readonly [
   Bit,
   Bit,
   Bit,
@@ -44,7 +44,7 @@ export type Bit12 = [
   Bit
 ];
 
-export type Bit15 = [
+export type Bit15 = readonly [
   Bit,
   Bit,
   Bit,
@@ -65,7 +65,7 @@ export type Bit15 = [
 /**
  * A 16 bit type, as a tuple.
  */
-export type Bit16 = [
+export type Bit16 = readonly [
   Bit,
   Bit,
   Bit,
@@ -91,24 +91,24 @@ export interface IALUOutput {
   /**
    * The output of an ALU computation.
    */
-  out: Bit16;
+  readonly out: Bit16;
   /**
    * If the output is 0, then zr is 1.
    */
-  zr: Bit;
+  readonly zr: Bit;
   /**
    * If the output is negative (if the MSB is 1), then ng equals 1.
    */
-  ng: Bit;
+  readonly ng: Bit;
 }
 
 export interface SRFlipFlopOutput {
   /**
    * Q: The output.
    */
-  q: Bit;
+  readonly q: Bit;
   /**
    * Inverse Q, the inverse output.
    */
-  nq: Bit;
+  readonly nq: Bit;
 }
