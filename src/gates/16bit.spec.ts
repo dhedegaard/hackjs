@@ -1,3 +1,4 @@
+import { describe, expect, it } from "bun:test";
 import { And16, Mux16, Not16, ONED_16BIT, Or16, ZEROED_16BIT } from "./16bit";
 
 describe("16-bit gates", () => {

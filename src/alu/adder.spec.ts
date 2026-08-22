@@ -1,3 +1,4 @@
+import { describe, expect, it } from "bun:test";
 import { binaryToBit16, binaryToBit8 } from "../helpers";
 import {
   Adder16,

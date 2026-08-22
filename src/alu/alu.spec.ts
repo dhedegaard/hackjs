@@ -1,3 +1,4 @@
+import { describe, expect, it } from "bun:test";
 import { Not16, ONED_16BIT, ZEROED_16BIT } from "../gates";
 import { binaryToBit16, BIT16_FALSE, BIT16_TRUE } from "../helpers";
 import { ALU, Operator, Preset } from "./alu";

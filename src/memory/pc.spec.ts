@@ -1,3 +1,4 @@
+import { describe, expect, it } from "bun:test";
 import { binaryToBit16, BIT16_FALSE, BIT16_TRUE } from "../helpers";
 import { ProgramCounter } from "./pc";
 

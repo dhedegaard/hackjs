@@ -25,13 +25,6 @@
         // Exhaustive truth-table tests are long by design.
         "max-lines-per-function": "off"
       }
-    },
-    {
-      "files": ["**/*.d.ts"],
-      "rules": {
-        // `export {}` is required for `declare global` to work.
-        "unicorn/require-module-specifiers": "off"
-      }
     }
   ]
 }

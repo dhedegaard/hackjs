@@ -1,3 +1,4 @@
+import { describe, expect, it } from "bun:test";
 import * as gates from ".";
 
 describe("Elementary gates", () => {

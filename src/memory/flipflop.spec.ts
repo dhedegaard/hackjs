@@ -1,3 +1,4 @@
+import { describe, expect, it } from "bun:test";
 import type { SRFlipFlopOutput } from "../hackjs";
 import { GatedDFlipFlop, GatedDFlipFlopTick, SRFlipFlop } from "./flipflop";
 
