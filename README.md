@@ -13,3 +13,4 @@ The project runs on [Bun](https://bun.sh):
 - Install dependencies: `$ bun install`
 - Run the tests: `$ bun test`
 - Type check: `$ bun run typecheck`
+- Lint: `$ bun run lint`
