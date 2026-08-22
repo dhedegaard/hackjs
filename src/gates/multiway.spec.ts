@@ -18,47 +18,47 @@ describe("Multiway gates", () => {
 
   describe("Mux4Way16 gate", () => {
     // Short hands to make it more readable.
-    const _0 = ZEROED_16BIT;
-    const _1 = ONED_16BIT;
+    const b0 = ZEROED_16BIT;
+    const b1 = ONED_16BIT;
 
     it("should validate truth 16 bit based on selector", () => {
-      expect(Mux4Way16(_1, _0, _0, _0, [0, 0])).toEqual(_1);
-      expect(Mux4Way16(_0, _1, _0, _0, [1, 0])).toEqual(_1);
-      expect(Mux4Way16(_0, _0, _1, _0, [0, 1])).toEqual(_1);
-      expect(Mux4Way16(_0, _0, _0, _1, [1, 1])).toEqual(_1);
+      expect(Mux4Way16(b1, b0, b0, b0, [0, 0])).toEqual(b1);
+      expect(Mux4Way16(b0, b1, b0, b0, [1, 0])).toEqual(b1);
+      expect(Mux4Way16(b0, b0, b1, b0, [0, 1])).toEqual(b1);
+      expect(Mux4Way16(b0, b0, b0, b1, [1, 1])).toEqual(b1);
     });
     it("should validate false 16 bit based on selector", () => {
-      expect(Mux4Way16(_0, _1, _1, _1, [0, 0])).toEqual(_0);
-      expect(Mux4Way16(_1, _0, _1, _1, [1, 0])).toEqual(_0);
-      expect(Mux4Way16(_1, _1, _0, _1, [0, 1])).toEqual(_0);
-      expect(Mux4Way16(_1, _1, _1, _0, [1, 1])).toEqual(_0);
+      expect(Mux4Way16(b0, b1, b1, b1, [0, 0])).toEqual(b0);
+      expect(Mux4Way16(b1, b0, b1, b1, [1, 0])).toEqual(b0);
+      expect(Mux4Way16(b1, b1, b0, b1, [0, 1])).toEqual(b0);
+      expect(Mux4Way16(b1, b1, b1, b0, [1, 1])).toEqual(b0);
     });
   });
 
   describe("Mux8Way16 gate", () => {
     // Short hands to make it more readable.
-    const _0 = ZEROED_16BIT;
-    const _1 = ONED_16BIT;
+    const b0 = ZEROED_16BIT;
+    const b1 = ONED_16BIT;
 
     it("should validate truth 16 bit based on selector", () => {
-      expect(Mux8Way16(_1, _0, _0, _0, _0, _0, _0, _0, [0, 0, 0])).toEqual(_1);
-      expect(Mux8Way16(_0, _1, _0, _0, _0, _0, _0, _0, [1, 0, 0])).toEqual(_1);
-      expect(Mux8Way16(_0, _0, _1, _0, _0, _0, _0, _0, [0, 1, 0])).toEqual(_1);
-      expect(Mux8Way16(_0, _0, _0, _1, _0, _0, _0, _0, [1, 1, 0])).toEqual(_1);
-      expect(Mux8Way16(_0, _0, _0, _0, _1, _0, _0, _0, [0, 0, 1])).toEqual(_1);
-      expect(Mux8Way16(_0, _0, _0, _0, _0, _1, _0, _0, [1, 0, 1])).toEqual(_1);
-      expect(Mux8Way16(_0, _0, _0, _0, _0, _0, _1, _0, [0, 1, 1])).toEqual(_1);
-      expect(Mux8Way16(_0, _0, _0, _0, _0, _0, _0, _1, [1, 1, 1])).toEqual(_1);
+      expect(Mux8Way16(b1, b0, b0, b0, b0, b0, b0, b0, [0, 0, 0])).toEqual(b1);
+      expect(Mux8Way16(b0, b1, b0, b0, b0, b0, b0, b0, [1, 0, 0])).toEqual(b1);
+      expect(Mux8Way16(b0, b0, b1, b0, b0, b0, b0, b0, [0, 1, 0])).toEqual(b1);
+      expect(Mux8Way16(b0, b0, b0, b1, b0, b0, b0, b0, [1, 1, 0])).toEqual(b1);
+      expect(Mux8Way16(b0, b0, b0, b0, b1, b0, b0, b0, [0, 0, 1])).toEqual(b1);
+      expect(Mux8Way16(b0, b0, b0, b0, b0, b1, b0, b0, [1, 0, 1])).toEqual(b1);
+      expect(Mux8Way16(b0, b0, b0, b0, b0, b0, b1, b0, [0, 1, 1])).toEqual(b1);
+      expect(Mux8Way16(b0, b0, b0, b0, b0, b0, b0, b1, [1, 1, 1])).toEqual(b1);
     });
     it("should validate false 16 bit based on selector", () => {
-      expect(Mux8Way16(_0, _1, _1, _1, _1, _1, _1, _1, [0, 0, 0])).toEqual(_0);
-      expect(Mux8Way16(_1, _0, _1, _1, _1, _1, _1, _1, [1, 0, 0])).toEqual(_0);
-      expect(Mux8Way16(_1, _1, _0, _1, _1, _1, _1, _1, [0, 1, 0])).toEqual(_0);
-      expect(Mux8Way16(_1, _1, _1, _0, _1, _1, _1, _1, [1, 1, 0])).toEqual(_0);
-      expect(Mux8Way16(_1, _1, _1, _1, _0, _1, _1, _1, [0, 0, 1])).toEqual(_0);
-      expect(Mux8Way16(_1, _1, _1, _1, _1, _0, _1, _1, [1, 0, 1])).toEqual(_0);
-      expect(Mux8Way16(_1, _1, _1, _1, _1, _1, _0, _1, [0, 1, 1])).toEqual(_0);
-      expect(Mux8Way16(_1, _1, _1, _1, _1, _1, _1, _0, [1, 1, 1])).toEqual(_0);
+      expect(Mux8Way16(b0, b1, b1, b1, b1, b1, b1, b1, [0, 0, 0])).toEqual(b0);
+      expect(Mux8Way16(b1, b0, b1, b1, b1, b1, b1, b1, [1, 0, 0])).toEqual(b0);
+      expect(Mux8Way16(b1, b1, b0, b1, b1, b1, b1, b1, [0, 1, 0])).toEqual(b0);
+      expect(Mux8Way16(b1, b1, b1, b0, b1, b1, b1, b1, [1, 1, 0])).toEqual(b0);
+      expect(Mux8Way16(b1, b1, b1, b1, b0, b1, b1, b1, [0, 0, 1])).toEqual(b0);
+      expect(Mux8Way16(b1, b1, b1, b1, b1, b0, b1, b1, [1, 0, 1])).toEqual(b0);
+      expect(Mux8Way16(b1, b1, b1, b1, b1, b1, b0, b1, [0, 1, 1])).toEqual(b0);
+      expect(Mux8Way16(b1, b1, b1, b1, b1, b1, b1, b0, [1, 1, 1])).toEqual(b0);
     });
   });
 
