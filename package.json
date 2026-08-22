@@ -6,7 +6,7 @@
     "bun": ">=1.0.0"
   },
   "scripts": {
-    "test": "bun test",
+    "test": "bun test src",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/"
   },

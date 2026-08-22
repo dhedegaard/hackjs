@@ -1,4 +1,4 @@
 {
-  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/bun/tsconfig"],
+  "extends": ["@tsconfig/bun/tsconfig", "@tsconfig/strictest/tsconfig"],
   "exclude": ["node_modules"]
 }
