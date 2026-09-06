@@ -1,2 +1,2 @@
-export * from "./flipflop";
-export * from "./ram";
+export * from "./flipflop.ts";
+export * from "./ram.ts";

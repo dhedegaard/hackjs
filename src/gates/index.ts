@@ -1,3 +1,3 @@
-export * from "./elementary";
-export * from "./16bit";
-export * from "./multiway";
+export * from "./elementary.ts";
+export * from "./16bit.ts";
+export * from "./multiway.ts";

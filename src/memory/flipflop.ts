@@ -1,4 +1,4 @@
-import { And, Nor, Not } from "../gates";
+import { And, Nor, Not } from "../gates/index.ts";
 import type { Bit, SRFlipFlopOutput } from "../hackjs";
 
 const SRFlipFlopTick = (s: Bit, r: Bit, output: SRFlipFlopOutput): SRFlipFlopOutput => ({

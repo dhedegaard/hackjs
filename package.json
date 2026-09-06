@@ -4,10 +4,12 @@
   "private": true,
   "description": "An implementation of the Hack computer, based on nand2tetris",
   "engines": {
-    "bun": ">=1.0.0"
+    "bun": ">=1.0.0",
+    "node": ">=22.18.0"
   },
   "scripts": {
     "test": "bun test src",
+    "test:node": "node --test \"src/**/*.spec.ts\"",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint --type-aware src/"
   },

@@ -1,4 +1,4 @@
-export * as alu from "./alu";
-export * as gates from "./gates";
-export * as helpers from "./helpers";
-export * as memory from "./memory";
+export * as alu from "./alu/index.ts";
+export * as gates from "./gates/index.ts";
+export * as helpers from "./helpers.ts";
+export * as memory from "./memory/index.ts";

@@ -1,8 +1,8 @@
 import type { Bit, Bit16 } from "../hackjs";
-import { Mux16, Or } from "../gates";
-import { BIT16_FALSE } from "../helpers";
-import { Inc16 } from "../alu";
-import { Register } from "./ram";
+import { Mux16, Or } from "../gates/index.ts";
+import { BIT16_FALSE } from "../helpers.ts";
+import { Inc16 } from "../alu/index.ts";
+import { Register } from "./ram.ts";
 
 /**
  * A 16-bit program counter.

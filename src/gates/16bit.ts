@@ -1,4 +1,4 @@
-import { And, Mux, Not, Or } from "./elementary";
+import { And, Mux, Not, Or } from "./elementary.ts";
 import type { Bit, Bit16 } from "../hackjs";
 
 export const ZEROED_16BIT = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] as const satisfies Bit16;

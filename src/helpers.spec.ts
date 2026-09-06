@@ -1,43 +1,34 @@
-import { binaryToArray, binaryToBit16, binaryToBit8, bitToBit16, bitToSRFlipFlopOutput } from "./helpers";
-import { describe, expect, it } from "bun:test";
+import { binaryToArray, binaryToBit16, binaryToBit8, bitToBit16, bitToSRFlipFlopOutput } from "./helpers.ts";
+import assert from "node:assert/strict";
+import { test } from "node:test";
 
-describe("Helper functions", () => {
+const c = binaryToBit16;
 
-  describe("binaryToArray", () => {
-    it("fails with a TypeError", () => {
-      expect(() => binaryToArray("", 10)).toThrow(TypeError);
-    });
-    it("validates some examples", () => {
-      expect(binaryToArray("0011", 4)).toEqual([1, 1, 0, 0]);
-    });
-  });
+await test("Helper functions > binaryToArray > fails with a TypeError", () => {
+  assert.throws(() => binaryToArray("", 10), TypeError);
+});
 
-  describe("binaryToBit8", () => {
-    it("should convert a binary string to an Bit8 object", () => {
-      expect(binaryToBit8("10101010")).toEqual([0, 1, 0, 1, 0, 1, 0, 1]);
-    });
-  });
+await test("Helper functions > binaryToArray > validates some examples", () => {
+  assert.deepStrictEqual(binaryToArray("0011", 4), [1, 1, 0, 0]);
+});
 
-  describe("binaryToBit16", () => {
-    it("should convert a binary string to an Bit16 object", () => {
-      expect(binaryToBit16("1010101010101010")).toEqual([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]);
-    });
-  });
+await test("Helper functions > binaryToBit8 > should convert a binary string to an Bit8 object", () => {
+  assert.deepStrictEqual(binaryToBit8("10101010"), [0, 1, 0, 1, 0, 1, 0, 1]);
+});
 
-  describe("bitToBit16", () => {
-    const c = binaryToBit16;
-    it("should convert 0 to all zeroes", () => {
-      expect(bitToBit16(0)).toEqual(c("0000000000000000"));
-    });
-    it("should convert 1 to 16 bit 1", () => {
-      expect(bitToBit16(1)).toEqual(c("1111111111111111"));
-    });
-  });
+await test("Helper functions > binaryToBit16 > should convert a binary string to an Bit16 object", () => {
+  assert.deepStrictEqual(binaryToBit16("1010101010101010"), [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]);
+});
 
-  describe("bitToSRFlipFlopOutput", () => {
-    it("should convert the 2 cases correctly", () => {
-      expect(bitToSRFlipFlopOutput(0)).toEqual({ q: 0, nq: 1 });
-      expect(bitToSRFlipFlopOutput(1)).toEqual({ q: 1, nq: 0 });
-    });
-  });
+await test("Helper functions > bitToBit16 > should convert 0 to all zeroes", () => {
+  assert.deepStrictEqual(bitToBit16(0), c("0000000000000000"));
+});
+
+await test("Helper functions > bitToBit16 > should convert 1 to 16 bit 1", () => {
+  assert.deepStrictEqual(bitToBit16(1), c("1111111111111111"));
+});
+
+await test("Helper functions > bitToSRFlipFlopOutput > should convert the 2 cases correctly", () => {
+  assert.deepStrictEqual(bitToSRFlipFlopOutput(0), { q: 0, nq: 1 });
+  assert.deepStrictEqual(bitToSRFlipFlopOutput(1), { q: 1, nq: 0 });
 });
