@@ -30,6 +30,7 @@ The project runs on [Bun](https://bun.sh) as the primary toolchain — no Jest, 
 CI (`.github/workflows/ci.yml`) runs `bun run typecheck`, `bun run lint`, then `bun test` in the Bun job, plus separate Node (`npm run test:node`) and Deno (`deno task test:deno`) jobs.
 
 - To check a run: `gh run list --branch main --json name,headSha,conclusion` and filter by SHA — `gh run list --commit <sha>` returns nothing here. Action deprecation warnings appear only as check-run annotations (`gh api repos/{owner}/{repo}/check-runs/<job-id>/annotations`), not in `--log-failed`; fix them by bumping to the latest major (`gh api repos/<action>/releases/latest`).
+- The supported runtimes are listed in four places that must stay in sync: `package.json` `engines` (documentation only — Bun and Deno ignore it, npm just warns), the `test:*` scripts, the CI jobs, and the README's run instructions.
 
 ## Architecture
 
