@@ -6,11 +6,12 @@
   "description": "An implementation of the Hack computer, based on nand2tetris",
   "engines": {
     "bun": ">=1.0.0",
-    "node": ">=22.18.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "test": "bun test src",
-    "test:node": "node --test \"src/**/*.spec.ts\"",
+    "test:node": "node --test",
+    "test:deno": "deno test",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint --type-aware src/"
   },

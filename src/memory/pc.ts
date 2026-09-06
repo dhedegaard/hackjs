@@ -1,4 +1,4 @@
-import type { Bit, Bit16 } from "../hackjs";
+import type { Bit, Bit16 } from "../hackjs.ts";
 import { Mux16, Or } from "../gates/index.ts";
 import { BIT16_FALSE } from "../helpers.ts";
 import { Inc16 } from "../alu/index.ts";

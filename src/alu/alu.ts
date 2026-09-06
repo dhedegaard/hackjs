@@ -1,6 +1,6 @@
 import { And16, Not, Not16, Or, Or16, Or8Way } from "../gates/index.ts";
 import { BIT16_FALSE, bitToBit16 } from "../helpers.ts";
-import type { Bit, Bit16, IALUOutput } from "../hackjs";
+import type { Bit, Bit16, IALUOutput } from "../hackjs.ts";
 import { Adder16 } from "./adder.ts";
 
 /**

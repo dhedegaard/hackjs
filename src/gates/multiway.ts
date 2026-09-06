@@ -1,5 +1,5 @@
 import { And, DMux, Mux4, Mux8, Not, Or } from "./elementary.ts";
-import type { Bit, Bit16, Bit2, Bit3, Bit4, Bit8 } from "../hackjs";
+import type { Bit, Bit16, Bit2, Bit3, Bit4, Bit8 } from "../hackjs.ts";
 
 /**
  * An 8 way or gate, outputs 1 if at least one of the bits are 1.

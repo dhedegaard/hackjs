@@ -2,7 +2,7 @@ import { DMux4Way, DMux8Way, Mux4Way16, Mux8Way16, Or8Way } from "./multiway.ts"
 import { ONED_16BIT, ZEROED_16BIT } from "./16bit.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { Bit8 } from "../hackjs";
+import type { Bit8 } from "../hackjs.ts";
 
 const ZEROED_8BIT = [0, 0, 0, 0, 0, 0, 0, 0] as const satisfies Bit8;
 const ONED_8BIT = [1, 1, 1, 1, 1, 1, 1, 1] as const satisfies Bit8;

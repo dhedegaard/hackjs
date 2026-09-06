@@ -1,5 +1,3 @@
-export as namespace hackjs;
-
 /**
  * The basic type below everything, a simple bit.
  */

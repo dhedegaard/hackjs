@@ -1,4 +1,4 @@
-import type { Bit, Bit12, Bit15, Bit16, Bit3, Bit6, Bit9 } from "../hackjs";
+import type { Bit, Bit12, Bit15, Bit16, Bit3, Bit6, Bit9 } from "../hackjs.ts";
 import { DMux8Way, Mux, Mux8Way16 } from "../gates/index.ts";
 import { GatedDFlipFlop } from "./flipflop.ts";
 import { bitToSRFlipFlopOutput } from "../helpers.ts";

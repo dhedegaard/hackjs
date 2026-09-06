@@ -1,7 +1,7 @@
 import { GatedDFlipFlop, GatedDFlipFlopTick, SRFlipFlop } from "./flipflop.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { SRFlipFlopOutput } from "../hackjs";
+import type { SRFlipFlopOutput } from "../hackjs.ts";
 
 await test("SRLatch > can hold state", () => {
   assert.deepStrictEqual(SRFlipFlop(0, 0, { q: 0, nq: 1 }), { q: 0, nq: 1 });

@@ -1,5 +1,5 @@
 import { And, Or, Xor } from "../gates/index.ts";
-import type { Bit, Bit16, Bit8 } from "../hackjs";
+import type { Bit, Bit16, Bit8 } from "../hackjs.ts";
 import { BIT16_TRUE } from "../helpers.ts";
 
 export interface IAdderResult {

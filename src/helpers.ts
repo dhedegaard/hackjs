@@ -1,4 +1,4 @@
-import type { Bit, Bit16, Bit8, SRFlipFlopOutput } from "./hackjs";
+import type { Bit, Bit16, Bit8, SRFlipFlopOutput } from "./hackjs.ts";
 import { Not } from "./gates/index.ts";
 
 const charToBit = (char: string): Bit => {
