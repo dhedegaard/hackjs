@@ -15,6 +15,8 @@ The project runs on [Bun](https://bun.sh) as the primary toolchain — no Jest, 
 - `bun run test:node` — run the same suite under Node's built-in runner (`node --test`). The tests must stay green on all three runtimes.
   - Bun implements `node:test` by mapping onto its own runner: it only works under `bun test`, not `bun run file.ts`, and less common APIs (mock timers, reporters) may differ from Node. `node:assert`'s `deepStrictEqual` is stricter than Jest's `toEqual` (prototypes, `undefined` props) — irrelevant for bit tuples.
 - `bun run test:deno` — run the suite under Deno (`deno test`). Deno type-checks each test module before running it, so a `tsc`-clean import can still fail here if it lacks an explicit extension.
+  - The type-check resolves `node:` imports through `@types/node` in `node_modules`, so `bun install` must have run first (CI does this in the Deno job). Don't add a `deno.json` or commit a `deno.lock` — `bun.lock` is the single lockfile.
+  - Deno recurses the whole repo for `*.test.ts`, so a scratch copy like `node_modules.bak/` gets picked up and fails the run — keep such copies outside the repo.
 - `bun run typecheck` — `tsc --noEmit`. Bun does not type-check when running tests, so run this alongside them.
 - `bun run lint` — [oxlint](https://oxc.rs) with type-aware rules (`oxlint-tsgolint`) over `src/`, configured in `.oxlintrc.json` (`correctness`/`suspicious`/`pedantic`/`perf`/`restriction` categories as errors — `style` is deliberately not enabled). The config is categories-only by design: no per-rule entries, no overrides. Keep it that way — when a rule fires, restructure the code rather than disabling or configuring the rule.
   - `oxlint-tsgolint`'s version tracks TypeScript's (`7.0.2001` = TS 7.0.2 + patch) — when bumping `typescript`, bump it to the matching version so compiler and linter share semantics.
@@ -26,6 +28,8 @@ The project runs on [Bun](https://bun.sh) as the primary toolchain — no Jest, 
     - Discarding a promise: `void promise` fails `no-void`, a bare call fails `no-floating-promises`, and `async` is banned outright (`oxc/no-async-await`) — so the only clean shape is top-level `await` in a module.
 
 CI (`.github/workflows/ci.yml`) runs `bun run typecheck`, `bun run lint`, then `bun test` in the Bun job, plus separate Node (`npm run test:node`) and Deno (`deno task test:deno`) jobs.
+
+- To check a run: `gh run list --branch main --json name,headSha,conclusion` and filter by SHA — `gh run list --commit <sha>` returns nothing here. Action deprecation warnings appear only as check-run annotations (`gh api repos/{owner}/{repo}/check-runs/<job-id>/annotations`), not in `--log-failed`; fix them by bumping to the latest major (`gh api repos/<action>/releases/latest`).
 
 ## Architecture
 
@@ -40,7 +44,7 @@ Layers (each re-exported via its directory's `index.ts`, and all namespaced from
 Key conventions:
 
 - **Imports** of local modules use explicit extensions — `./elementary.ts`, `../gates/index.ts` — because Node's ESM loader does not resolve extensionless or directory specifiers. This applies to type-only imports too — Deno's type-checker rejects the extensionless form even though `import type` is erased before runtime.
-- **Types** live in `src/hackjs.ts` (a types-only module, imported as `../hackjs.ts`): `Bit = 0 | 1` and fixed-length readonly tuple types (`Bit2`…`Bit16`). Tuples are built by explicit construction (indexed element literals, rest-destructuring for address splits, `as const satisfies Bit16` for constant tables) — never by `as BitN` assertions on `slice`/`map` results, which the lint setup rejects as unsafe. Type-only imports must use `import type` — `tsconfig.json` enables `verbatimModuleSyntax`. The config extends only `@tsconfig/strictest` with `types: ["node"]`; no Bun-specific APIs or types are used, so the code stays portable across all three runtimes.
+- **Types** live in `src/hackjs.ts` (a types-only module, imported as `../hackjs.ts` — never a `.d.ts` file, which may not exist at runtime or after a build): `Bit = 0 | 1` and fixed-length readonly tuple types (`Bit2`…`Bit16`). Tuples are built by explicit construction (indexed element literals, rest-destructuring for address splits, `as const satisfies Bit16` for constant tables) — never by `as BitN` assertions on `slice`/`map` results, which the lint setup rejects as unsafe. Type-only imports must use `import type` — `tsconfig.json` enables `verbatimModuleSyntax`. The config extends only `@tsconfig/strictest` with `types: ["node"]`; no Bun-specific APIs or types are used, so the code stays portable across all three runtimes.
 - **No `as` type assertions**: prefer `satisfies T` to check a literal against a type, and `as const` (or `as const satisfies T`) when literal/tuple inference should be kept. `as T` casts are banned — restructure the code so the type holds by construction instead.
 - **Bit ordering**: bit arrays are LSB-first — `helpers.binaryToBit16("…")` reverses the string, so index 0 of the tuple is the least significant bit. The printed array order is the reverse of the binary-string notation.
 - **State**: combinational chips are pure functions. Sequential chips (`BitRegister`, `Register`, RAM, PC) are factory functions returning a closure that holds its own state — call the factory to get a chip instance, then invoke the instance per clock cycle.
