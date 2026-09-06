@@ -2,6 +2,7 @@
   "name": "@dhedegaard/hackjs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "An implementation of the Hack computer, based on nand2tetris",
   "engines": {
     "bun": ">=1.0.0",
