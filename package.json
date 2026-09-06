@@ -16,9 +16,8 @@
     "lint": "oxlint --type-aware src/"
   },
   "devDependencies": {
-    "@tsconfig/bun": "^1.0.11",
     "@tsconfig/strictest": "^2.0.8",
-    "@types/bun": "^1.4.1",
+    "@types/node": "^26.4.1",
     "oxlint": "^1.81.0",
     "oxlint-tsgolint": "^7.0.2001",
     "typescript": "^7.0.2"

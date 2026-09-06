@@ -1,4 +1,16 @@
 {
-  "extends": ["@tsconfig/bun/tsconfig", "@tsconfig/strictest/tsconfig"],
+  "extends": "@tsconfig/strictest/tsconfig",
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "types": ["node"],
+    "module": "Preserve",
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "skipLibCheck": true
+  },
   "exclude": ["node_modules"]
 }
