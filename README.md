@@ -11,6 +11,6 @@ There's nothing really to run yet, there are some unit tests that prove that the
 The project runs on [Bun](https://bun.sh):
 
 - Install dependencies: `$ bun install`
-- Run the tests: `$ bun test` (or under Node: `$ npm run test:node`)
+- Run the tests: `$ bun test` (or under Node: `$ npm run test:node`, Deno: `$ deno task test:deno`)
 - Type check: `$ bun run typecheck`
 - Lint: `$ bun run lint`
